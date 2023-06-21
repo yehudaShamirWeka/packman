@@ -5,11 +5,16 @@ import pygame
 
 from board import Board
 
+
+pygame.init()
+global screen, clock
+
+screen = pygame.display.set_mode((1400, 1400))
+clock = pygame.time.Clock()
+
 def main():
     # pygame setup
-    pygame.init()
-    screen = pygame.display.set_mode((1400, 1400))
-    clock = pygame.time.Clock()
+
     running = True
     dt = 0
 
@@ -24,9 +29,10 @@ def main():
 
         # fill the screen with a color to wipe away anything from last frame
         screen.fill("gray")
-        pygame.draw.rect(screen, "green", (0, 0, 100, 100))
-        pygame.draw.circle(screen, "yellow", player_pos, 40)
-        b = Board(15, 15, screen)
+        # pygame.draw.rect(screen, "green", (0, 0, 100, 100))
+        # pygame.draw.circle(screen, "yellow", player_pos, 40)
+        b = Board(20, 11)
+        b.draw(screen)
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
@@ -37,6 +43,8 @@ def main():
             player_pos.x -= 300 * dt
         if keys[pygame.K_d]:
             player_pos.x += 300 * dt
+
+
 
         # flip() the display to put your work on screen
         pygame.display.flip()
